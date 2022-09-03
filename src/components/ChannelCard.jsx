@@ -16,7 +16,7 @@ const ChannelCard = ({ channelDetail, marginTop }) => {
         width: { xs: "356px", md: "320px" },
         height: "326px",
         margin: "auto",
-        marginTop
+        marginTop,
       }}
     >
       <Link to={`/channel/${channelDetail?.id?.channelId}`}>
@@ -54,9 +54,14 @@ const ChannelCard = ({ channelDetail, marginTop }) => {
             <Typography
               sx={{ fontSize: "15px", fontWeight: 500, color: "gray" }}
             >
-              {parseInt(
-                channelDetail?.statistics?.subscriberCount
-              ).toLocaleString("en-US")}{" "}
+              {channelDetail?.statistics?.subscriberCount.length > 6
+                ? `${parseInt(channelDetail?.statistics?.subscriberCount)
+                    .toLocaleString("en-US")
+                    .substring(0, 2)
+                    .replace(/\W/, "")}M`
+                : parseInt(
+                    channelDetail?.statistics?.subscriberCount
+                  ).toLocaleString("en-US")}{" "}
               Subscribers
             </Typography>
           )}
