@@ -4,6 +4,8 @@ import { Box } from "@mui/system";
 
 import { Videos, ChannelCard } from "./";
 import { fetchFromAPI } from "../utils/fetchFromAPI";
+import { CardMedia } from "@mui/material";
+import { demoProfilePicture } from "../utils/constants";
 
 const ChannelDetail = () => {
   const [channelContent, setChannelContent] = useState(null);
@@ -23,10 +25,13 @@ const ChannelDetail = () => {
   return (
     <Box minHeight="95vh">
       <Box>
-        <div
+        <CardMedia
+          image={
+            `${channelContent?.snippet?.thumbnails?.high?.url}` ||
+            demoProfilePicture
+          }
           style={{
-            background:
-              "linear-gradient(90deg, rgba(0,238,247,1) 0%, rgba(206,3,184,1) 100%, rgba(0,212,255,1) 100%)",
+            filter: "brightness(.5)",
             height: "300px",
             zIndex: 10,
           }}
@@ -35,7 +40,7 @@ const ChannelDetail = () => {
       </Box>
 
       <Box p={2} display="flex">
-      <Box sx={{ mr: { sm: '100px' } }}/>
+        <Box sx={{ mr: { sm: "100px" } }} />
         <Videos videos={channelVideos} />
       </Box>
     </Box>
