@@ -27,7 +27,7 @@ const ChannelDetail = () => {
       <Box>
         <CardMedia
           image={
-            `${channelContent?.snippet?.thumbnails?.high?.url}` ||
+            `${channelContent?.snippet?.thumbnails?.medium?.url}` ||
             demoProfilePicture
           }
           style={{
