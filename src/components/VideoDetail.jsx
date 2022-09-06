@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import ReactPlayer from "react-player";
-import { Box, Typography, Stack } from "@mui/system";
+import { Box, Typography, Stack } from "@mui/material";
 import { CheckCircle } from "@mui/icons-material";
 
 import { Video } from "./";
@@ -27,6 +27,9 @@ const VideoDetail = () => {
               className="react-player"
               controls
             />
+            <Typography variant="h5" fontWeight="bold" color="white" p={2}>
+              {videoDetail?.snippet?.title}
+            </Typography>
           </Box>
         </Box>
       </Stack>

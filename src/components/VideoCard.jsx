@@ -11,12 +11,20 @@ import {
   demoChannelUrl,
 } from "../utils/constants";
 
+
+const formatTextWithHtmlEntities = title => {
+  const text = document.createElement("textarea");
+  text.innerHTML = title;
+  return text.value;
+}
+
 const VideoCard = ({
   video: {
     id: { videoId },
     snippet,
   },
 }) => {
+  
   return (
     <Card
       sx={{
@@ -44,7 +52,7 @@ const VideoCard = ({
         <Link to={videoId ? `/video/${videoId}` : demoVideoUrl}>
           <Typography variant="subtitle1" fontWeight="bold" color="#FFF">
             {`${
-              snippet?.title.slice(0, 50).trim() ||
+              formatTextWithHtmlEntities(snippet?.title.slice(0, 50).trim()) ||
               demoVideoTitle.slice(0, 60).trim()
             }...`}
           </Typography>

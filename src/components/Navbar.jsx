@@ -15,6 +15,7 @@ const Navbar = () => (
       background: "#222",
       top: 0,
       justifyContent: "space-between",
+      zIndex: 5
     }}
   >
     <Link
