@@ -3,6 +3,8 @@ import { Link, useParams } from "react-router-dom";
 import ReactPlayer from "react-player";
 import { Box, Typography, Stack } from "@mui/material";
 import { CheckCircle } from "@mui/icons-material";
+import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
+import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
 
 import { Video } from "./";
 import { fetchFromAPI } from "../utils/fetchFromAPI";
@@ -17,6 +19,28 @@ const VideoDetail = () => {
     );
   }, [id]);
 
+  if (!videoDetail?.snippet)
+    return (
+      <Box
+        minHeight="95vh"
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+      >
+        <Typography
+          variant="h5"
+          sx={{ textAlign: "center", letterSpacing: "7px" }}
+        >
+          Loading...
+        </Typography>
+      </Box>
+    );
+
+  const {
+    snippet: { title, channelId, channelTitle },
+    statistics: { viewCount, likeCount },
+  } = videoDetail;
+
   return (
     <Box minHeight="95vh">
       <Stack direction={{ xs: "column", md: "row" }}>
@@ -28,8 +52,53 @@ const VideoDetail = () => {
               controls
             />
             <Typography variant="h5" fontWeight="bold" color="white" p={2}>
-              {videoDetail?.snippet?.title}
+              {title}
             </Typography>
+
+            <Stack
+              direction="row"
+              justifyContent="space-between"
+              sx={{ color: "white" }}
+              py={1}
+              px={2}
+            >
+              <Link to={`/channel/${channelId}`}>
+                <Typography
+                  variant={{ sm: "subtitle1", md: "h6" }}
+                  color="white"
+                >
+                  {channelTitle}
+                  <CheckCircle
+                    sx={{ fontSize: "12px", color: "gray", ml: "5px" }}
+                  />
+                </Typography>
+              </Link>
+
+              <Stack direction="row" gap="20px" alignItems="center">
+                <Stack
+                  direction="row"
+                  gap="5px"
+                  alignItems="center"
+                  sx={{ opacity: 0.7 }}
+                >
+                  <RemoveRedEyeIcon />
+                  <Typography variant="body1">
+                    {parseInt(viewCount).toLocaleString()} views
+                  </Typography>
+                </Stack>
+                <Stack
+                  direction="row"
+                  gap="5px"
+                  alignItems="center"
+                  sx={{ opacity: 0.7 }}
+                >
+                  <ThumbUpAltIcon />
+                  <Typography variant="body1">
+                    {parseInt(likeCount).toLocaleString()} likes
+                  </Typography>
+                </Stack>
+              </Stack>
+            </Stack>
           </Box>
         </Box>
       </Stack>

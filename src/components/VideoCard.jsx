@@ -52,7 +52,7 @@ const VideoCard = ({
         <Link to={videoId ? `/video/${videoId}` : demoVideoUrl}>
           <Typography variant="subtitle1" fontWeight="bold" color="#FFF">
             {`${
-              formatTextWithHtmlEntities(snippet?.title.slice(0, 50).trim()) ||
+              formatTextWithHtmlEntities(snippet?.title.slice(0, 60).trim()) ||
               demoVideoTitle.slice(0, 60).trim()
             }...`}
           </Typography>

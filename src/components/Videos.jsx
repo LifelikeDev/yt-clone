@@ -8,7 +8,7 @@ const Videos = ({ videos }) => {
     <Stack direction="row" flexWrap="wrap" gap={2} justifyContent="start">
       {!videos.length ? (
        
-          <Typography variant="h5" textAlign="center" margin="25vh auto">L o a d i n g . . .</Typography>
+          <Typography variant="h5" textAlign="center" letterSpacing="7px" margin="25vh auto">Loading...</Typography>
       ) : (
         videos.map((item, idx) => (
           <Box key={idx}>

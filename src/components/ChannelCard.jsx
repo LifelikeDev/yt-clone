@@ -30,42 +30,46 @@ const ChannelCard = ({ channelDetail, marginTop }) => {
             color: "#fff",
           }}
         >
-          <CardMedia
-            image={
-              channelDetail?.snippet?.thumbnails?.medium?.url ||
-              demoProfilePicture
-            }
-            alt={channelDetail?.snippet?.title}
-            sx={{
-              borderRadius: "50%",
-              height: "180px",
-              width: "180px",
-              mb: 2,
-              border: "1px solid #e3e3e3",
-              zIndex: 5
-            }}
-          />
+          {channelDetail?.snippet?.thumbnails?.medium?.url && (
+            <>
+              <CardMedia
+                image={
+                  channelDetail?.snippet?.thumbnails?.medium?.url ||
+                  demoProfilePicture
+                }
+                alt={channelDetail?.snippet?.title}
+                sx={{
+                  borderRadius: "50%",
+                  height: "180px",
+                  width: "180px",
+                  mb: 2,
+                  border: "1px solid #e3e3e3",
+                  zIndex: 5,
+                }}
+              />
 
-          <Typography variant="h6">
-            {channelDetail?.snippet?.title}{" "}
-            <CheckCircleIcon
-              sx={{ fontSize: "14px", color: "gray", ml: "5px" }}
-            />
-          </Typography>
-          {channelDetail?.statistics?.subscriberCount && (
-            <Typography
-              sx={{ fontSize: "15px", fontWeight: 500, color: "gray" }}
-            >
-              {channelDetail?.statistics?.subscriberCount.length > 6
-                ? `${parseInt(channelDetail?.statistics?.subscriberCount)
-                    .toLocaleString("en-US")
-                    .substring(0, 2)
-                    .replace(/\W/, "")}M`
-                : parseInt(
-                    channelDetail?.statistics?.subscriberCount
-                  ).toLocaleString("en-US")}{" "}
-              Subscribers
-            </Typography>
+              <Typography variant="h6">
+                {channelDetail?.snippet?.title}{" "}
+                <CheckCircleIcon
+                  sx={{ fontSize: "14px", color: "gray", ml: "5px" }}
+                />
+              </Typography>
+              {channelDetail?.statistics?.subscriberCount && (
+                <Typography
+                  sx={{ fontSize: "15px", fontWeight: 500, color: "gray" }}
+                >
+                  {channelDetail?.statistics?.subscriberCount.length > 6
+                    ? `${parseInt(channelDetail?.statistics?.subscriberCount)
+                        .toLocaleString("en-US")
+                        .substring(0, 2)
+                        .replace(/\W/, "")}M`
+                    : parseInt(
+                        channelDetail?.statistics?.subscriberCount
+                      ).toLocaleString("en-US")}{" "}
+                  Subscribers
+                </Typography>
+              )}
+            </>
           )}
         </CardContent>
       </Link>
