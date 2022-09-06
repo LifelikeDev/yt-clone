@@ -37,7 +37,7 @@ const VideoDetail = () => {
     );
 
   const {
-    snippet: { title, channelId, channelTitle },
+    snippet: { title, channelId, channelTitle, description },
     statistics: { viewCount, likeCount },
   } = videoDetail;
 
@@ -63,15 +63,12 @@ const VideoDetail = () => {
               px={2}
             >
               <Link to={`/channel/${channelId}`}>
-                <Typography
-                  variant={{ sm: "subtitle1", md: "h6" }}
-                  color="white"
-                >
-                  {channelTitle}
-                  <CheckCircle
-                    sx={{ fontSize: "12px", color: "gray", ml: "5px" }}
-                  />
-                </Typography>
+                <Stack direction="row" alignItems="center" gap="5px">
+                  <Typography variant="body2" color="white">
+                    {channelTitle}
+                  </Typography>
+                  <CheckCircle sx={{ fontSize: "15px", color: "gray" }} />
+                </Stack>
               </Link>
 
               <Stack direction="row" gap="20px" alignItems="center">
@@ -81,7 +78,7 @@ const VideoDetail = () => {
                   alignItems="center"
                   sx={{ opacity: 0.7 }}
                 >
-                  <RemoveRedEyeIcon />
+                  <RemoveRedEyeIcon fontSize="13px" />
                   <Typography variant="body1">
                     {parseInt(viewCount).toLocaleString()} views
                   </Typography>
@@ -92,12 +89,20 @@ const VideoDetail = () => {
                   alignItems="center"
                   sx={{ opacity: 0.7 }}
                 >
-                  <ThumbUpAltIcon />
+                  <ThumbUpAltIcon fontSize="13px" />
                   <Typography variant="body1">
                     {parseInt(likeCount).toLocaleString()} likes
                   </Typography>
                 </Stack>
               </Stack>
+            </Stack>
+
+            <Stack p={2} mb={4}>
+              <Typography variant="body2" color="#ccc" fontSize="15px">
+                {description.length < 620
+                  ? description
+                  : `${description.substring(0, 620).trim()}...`}
+              </Typography>
             </Stack>
           </Box>
         </Box>
