@@ -6,16 +6,21 @@ import { CheckCircle } from "@mui/icons-material";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
 
-import { Video } from "./";
+import { Videos } from "./";
 import { fetchFromAPI } from "../utils/fetchFromAPI";
 
 const VideoDetail = () => {
   const [videoDetail, setVideoDetail] = useState(null);
+  const [relatedVideos, setRelatedVideos] = useState([]);
   const { id } = useParams();
 
   useEffect(() => {
     fetchFromAPI(`videos?part=snippet,statistics&id=${id}`).then((data) =>
       setVideoDetail(data.items[0])
+    );
+
+    fetchFromAPI(`search?part=snippet&relatedToVideoId=${id}&type=video`).then(
+      (data) => setRelatedVideos(data.items)
     );
   }, [id]);
 
@@ -37,14 +42,14 @@ const VideoDetail = () => {
     );
 
   const {
-    snippet: { title, channelId, channelTitle, description },
+    snippet: { title, channelId, channelTitle, description, publishedAt },
     statistics: { viewCount, likeCount },
   } = videoDetail;
 
   return (
     <Box minHeight="95vh">
       <Stack direction={{ xs: "column", md: "row" }}>
-        <Box flex={1}>
+        <Box flex={1} sx={{marginBottom: '4rem'}}>
           <Box sx={{ width: "100%", position: "sticky", top: "86px" }}>
             <ReactPlayer
               url={`https://www.youtube.com/watch?v=${id}`}
@@ -78,6 +83,17 @@ const VideoDetail = () => {
                   alignItems="center"
                   sx={{ opacity: 0.7 }}
                 >
+                  <Typography variant="body1">
+                    {new Date(publishedAt).toDateString().substring(4)}
+                  </Typography>
+                </Stack>
+
+                <Stack
+                  direction="row"
+                  gap="5px"
+                  alignItems="center"
+                  sx={{ opacity: 0.7 }}
+                >
                   <RemoveRedEyeIcon fontSize="13px" />
                   <Typography variant="body1">
                     {parseInt(viewCount).toLocaleString()} views
@@ -97,15 +113,27 @@ const VideoDetail = () => {
               </Stack>
             </Stack>
 
-            <Stack p={2} mb={4}>
-              <Typography variant="body2" color="#ccc" fontSize="15px">
+            <Stack p={2} mb={4} direction="row" justifyContent="space-between" gap="10px">
+              <Typography variant="body2" color="#ccc" fontSize="16px" lineHeight="2">
                 {description.length < 620
                   ? description
                   : `${description.substring(0, 620).trim()}...`}
               </Typography>
+
+        <Box
+          px={2}
+          py={{ md: 1, xs: 5 }}
+          justifyContent="center"
+          alignItems="center"
+          zIndex={1}
+        >
+          <Videos videos={relatedVideos} direction="column" />
+        </Box>
+
             </Stack>
           </Box>
         </Box>
+
       </Stack>
     </Box>
   );
