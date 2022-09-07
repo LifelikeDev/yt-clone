@@ -42,8 +42,15 @@ a {
 
 .search-bar {
   border: none;
+  background-color: #555;
   outline: none;
   width: 350px;
+}
+
+.search-bar::placeholder {
+  color: #e3e3e3;
+  font-size: 14px;
+  letter-spacing: 1px;
 }
 
 .category-btn {
