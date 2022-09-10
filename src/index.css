@@ -42,7 +42,8 @@ a {
 
 .search-bar {
   border: none;
-  background-color: #555;
+  background-color: #888;
+  font-size: 15px;
   outline: none;
   width: 350px;
 }
