@@ -6,8 +6,8 @@ import { CheckCircle } from "@mui/icons-material";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
 
-import { Videos } from "./";
-import { fetchFromAPI } from "../utils/fetchFromAPI";
+import { Videos } from "../";
+import { fetchFromAPI } from "../../utils/fetchFromAPI";
 
 const VideoDetail = () => {
   const [videoDetail, setVideoDetail] = useState(null);

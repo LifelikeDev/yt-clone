@@ -9,7 +9,7 @@ import {
   demoVideoTitle,
   demoChannelTitle,
   demoChannelUrl,
-} from "../utils/constants";
+} from "../../utils/constants";
 
 
 const formatTextWithHtmlEntities = title => {
