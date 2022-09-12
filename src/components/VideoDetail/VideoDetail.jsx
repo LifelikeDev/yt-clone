@@ -61,7 +61,7 @@ const VideoDetail = () => {
             </Typography>
 
             <Stack
-              direction={{sx: "column", md: "row"}}
+              direction={{xs: "column", md: "row"}}
               justifyContent="space-between"
               sx={{ color: "white" }}
               py={1}
@@ -113,7 +113,7 @@ const VideoDetail = () => {
               </Stack>
             </Stack>
 
-            <Stack p={2} mb={4} direction={{sx: "column", md: "row"}} justifyContent="space-between" gap="10px">
+            <Stack p={2} mb={4} direction={{xs: "column", md: "row"}} justifyContent="space-between" gap="10px">
               <Typography variant="body2" color="#ccc" fontSize="16px" lineHeight="2">
                 {description.length < 620
                   ? description
