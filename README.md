@@ -1,5 +1,9 @@
 # YT Clone
-A clone of [YouTube](https://youtube.com) 
+A clone of [YouTube](https://youtube.com).
+
+This app was built with ReactJS, Material UI and RapidAPI's YouTube v3 API.
+
+Find the deployed app [here](https://yt-clone-lld.netlify.app/).
 
 ---
 
