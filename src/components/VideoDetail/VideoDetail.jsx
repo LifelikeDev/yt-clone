@@ -68,8 +68,8 @@ const VideoDetail = () => {
               px={2}
             >
               <Link to={`/channel/${channelId}`}>
-                <Stack direction="row" alignItems="center" gap="5px">
-                  <Typography variant="body2" color="white">
+                <Stack direction="row" alignItems="center" gap="5px" marginY="1rem">
+                  <Typography variant="body1" color="white">
                     {channelTitle}
                   </Typography>
                   <CheckCircle sx={{ fontSize: "15px", color: "gray" }} />
